@@ -1,6 +1,6 @@
 # Análise Exploratória De Dados de Supply Chain
 
-Este notebook tem como objetivo apresentar uma análise abrangente de um conjunto de dados relacionados à cadeia de suprimentos, com foco em aspectos como vendas, distribuição comercial, logística e clientes. O conjunto de dados em questão oferece diversas oportunidades para análise. Portanto, esta Análise Exploratória de Dados (EDA) não pretende esgotar todas as possibilidades, mas, sim, abordar questões específicas, tais como:
+Este notebook tem como objetivo apresentar uma análise de um conjunto de dados relacionados à cadeia de suprimentos, com foco em aspectos como vendas, distribuição comercial, logística e clientes. O conjunto de dados em questão oferece diversas oportunidades para análise. Portanto, esta Análise Exploratória de Dados (EDA) não pretende esgotar todas as possibilidades, mas, sim, abordar questões específicas, tais como:
 
 - **Método de Pagamento Preferido**: Investigaremos qual é o método de pagamento mais comumente utilizado pelos clientes.
 
@@ -12,15 +12,27 @@ Este notebook tem como objetivo apresentar uma análise abrangente de um conjunt
 
 - **Detecção de Fraudes**: Examinaremos as características gerais dos pedidos sinalizados como possíveis fraudes, contribuindo para a compreensão e detecção de atividades fraudulentas.
 
-### 🔩 Um pouco sobre a análise
+### 🔩 Sobre a análise
 
-De modo geral, a empresa sofre de dois problemas graves: um diz respeito das transações e métodos de pagamento e o outro sobre o risco de atraso nas entregas.
+Dois pontos chamam a atenção na análise: os métodos de pagamento utilizados e o tempo de entrega.
 
-Apenas transações no débito tiveram status do pedido completo. Nenhum dos demais métodos de pagamento tiveram seus pedidos completamente processados:
+- A forma de pagamento mais utilizada é o débito, conforme podemos ver no gráfico abaixo:
 
-<img src="graficos\\prop_status_pedido_por_meiopag.png" alt="image" width="50%" height="auto">
+<img src="graficos\\formas_pagamentos.png" alt="image" width="85%" height="auto">
 
-Um indicador importante para medir a qualidade do operador logístico é o On Time. Este indicador mede se o pedido chegou ou não no tempo previsto. No nosso caso, a maior parte das regiões sofre com atraso nas entregas em mais de 50% dos pedidos, de modo que tem-se um On Time muito baixo. Atraso causa insatisfação nos clientes, fazendo, inclusive, que muitos não voltem a comprar. Nesse sentido, é preciso identificar o que ocasiona esse atraso: é uma falha operacional que pode ser resolvida internamente? É uma falha de um terceiro que realiza as entregas? É por conta da localidade dos armazens? É um problema com fornecedor?...
+Quando olhamos os status dos pedidos, vemos que apenas as transações no débito tiveram status do pedido completo. Nenhum dos demais métodos de pagamento tiveram seus pedidos completamente processado, apesar do potencial de outros meios de pagamento, que juntos possuem volume de $ 20.414.891 e de 40.412 pedidos total:
+
+<img src="graficos\\prop_status_pedido_por_meiopag.png" alt="image" width="85%" height="auto">
+
+<img src="graficos\\valor_processado_tipo_de_pagamento.png" alt="image" width="85%" height="auto">
+
+- Em relação ao tempo de entrega, um indicador importante para medir a qualidade do operador logístico é o **On Time**. Este indicador mede se o pedido chegou ou não no tempo previsto.
+
+No nosso caso, a maior parte das regiões sofre com atraso nas entregas em mais de 50% dos pedidos, de modo que tem-se um On Time muito baixo.
+
+Atraso causa insatisfação nos clientes, fazendo, inclusive, que muitos não voltem a comprar. Nesse sentido, é preciso identificar o que ocasiona esse atraso: é uma falha operacional que pode ser resolvida internamente? É uma falha de um terceiro que realiza as entregas? É por conta da localidade dos armazens? É um problema com fornecedor?
+
+O problema dos atrasos podem com os métodos de entrega **Standard Class** e **Second Class**, que são as categórias de entrega com maior tempo entre a realização do pedido e a entrega efetivamente.
 
   <table border="1" class="dataframe dataframe">
   <thead>
@@ -292,6 +304,11 @@ Um indicador importante para medir a qualidade do operador logístico é o On Ti
     </tr>
   </tbody>
 </table>
+
+Realizou-se um teste T a fim de verificar se há uma diferença estatisticamente significativa entre as médias do tempo de entrega das duas categorias, com o objetivo de verificar se vale à pena mantê-las. No caso, tivemos evidências suficiente para rejeitar a hipótese nula de que as médias são iguais em ambas as modalidades, mas vemos as médias e desvio padrão de ambas são muito próximas em ambas as modalidades. Atentando-se ao fato de que a eficiência operacional, em geral, é semelhante, variando quando olhamos as regiões, um segundo passo seria olhar o custo-benefício de se manter as duas modalidades de entrega.
+
+<img src="graficos\\distribuicao_status_delivery.png" alt="image" width="85%" height="auto">
+
 📈 🎲
 
 O dataset pode ser baixado através do seguinte link: [dataset de supply chain](https://www.kaggle.com/datasets/shashwatwork/dataco-smart-supply-chain-for-big-data-analysis/data)
